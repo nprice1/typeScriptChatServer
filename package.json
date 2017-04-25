@@ -1,0 +1,21 @@
+{
+  "name": "type-script-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc --removeComments --module commonjs --target ES5 --outDir build src/server.ts",
+    "start": "node ./build/server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/ws": "0.0.40",
+    "react": "^15.5.4",
+    "ts-loader": "^2.0.3",
+    "typescript": "^2.2.2",
+    "webpack": "^2.4.1",
+    "ws": "^2.3.1"
+  }
+}
