@@ -1,7 +1,7 @@
 import * as WebSocket from 'ws';
 import { UserMessage } from './models';
 
-const port: number = process.env.PORT || 3000;
+const port: number = 3000;
 const server: WebSocket.Server = new WebSocket.Server({ port: port });
 
 server.on('connection', ws => {

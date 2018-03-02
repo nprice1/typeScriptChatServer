@@ -1,7 +1,4 @@
- export interface Message {
-	name: string;
-	message: string;
-}
+import { Message } from './index';
 
 export class UserMessage implements Message {
   name: string;
