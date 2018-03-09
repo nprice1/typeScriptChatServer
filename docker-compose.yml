@@ -1,0 +1,50 @@
+version: '3.1'
+
+volumes:
+  prometheus_data: {}
+  grafana_data: {}
+
+services:
+  # Prometheus monitoring
+  prometheus:
+    image: prom/prometheus:v2.0.0
+    volumes:
+      - ./prometheus/:/etc/prometheus/
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    ports:
+      - 9090:9090
+    
+  grafana:
+    image: grafana/grafana
+    depends_on:
+      - prometheus
+    ports:
+      - 3001:3000
+    volumes:
+      - grafana_data:/var/lib/grafana
+    env_file:
+      - config.monitoring
+
+  server: 
+    image: chat_server:v1.0.0
+    ports:
+      - 3000:3000
+      - 8081:8081
+  chaos: 
+    image: chat_server:v1.0.0
+    command: npm run chaos
+    depends_on:
+      - server
+  client:
+    image: chat_client:v1.0.0
+    ports:
+      - 8080:80
+    depends_on: 
+      - server
+  
+  

@@ -5,13 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc --removeComments --module commonjs --target ES5 --outDir build src/server.ts",
-    "start": "node ./build/server.js"
+    "build": "tsc --removeComments --module commonjs --target ES5 --outDir build src/*",
+    "start": "node ./build/server.js",
+    "chaos": "node ./build/chaos.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/ws": "0.0.40",
+    "@types/node": "9.4.6",
     "react": "^15.5.4",
     "ts-loader": "^2.0.3",
     "typescript": "^2.2.2",
